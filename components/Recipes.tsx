@@ -11,6 +11,7 @@ import {
   Image
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { TYPOGRAPHY, FONT_WEIGHTS, COLORS } from '../constants/Typography';
 
 const Stack = createStackNavigator();
 
@@ -465,14 +466,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#222',
+    fontSize: TYPOGRAPHY.title,
+    fontWeight: FONT_WEIGHTS.bold,
+    color: COLORS.primary,
     marginBottom: 5,
   },
   subtitle: {
-    fontSize: 16,
-    color: '#666',
+    fontSize: TYPOGRAPHY.body,
+    color: COLORS.gray,
     textAlign: 'center',
   },
   ingredientsCard: {
@@ -500,14 +501,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   ingredientsTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#222',
+    fontSize: TYPOGRAPHY.subheading,
+    fontWeight: FONT_WEIGHTS.bold,
+    color: COLORS.primary,
     marginBottom: 2,
   },
   ingredientsSubtitle: {
-    fontSize: 14,
-    color: '#666',
+    fontSize: TYPOGRAPHY.bodySmall,
+    color: COLORS.gray,
   },
   exploreButton: {
     flexDirection: 'row',
@@ -518,9 +519,10 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   exploreText: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: COLORS.white,
+    fontWeight: FONT_WEIGHTS.bold,
     marginRight: 6,
+    fontSize: TYPOGRAPHY.button,
   },
   searchContainer: {
     flexDirection: 'row',
@@ -537,8 +539,8 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     flex: 1,
-    fontSize: 16,
-    color: '#222',
+    fontSize: TYPOGRAPHY.input,
+    color: COLORS.primary,
   },
   categoriesContainer: {
     paddingHorizontal: 20,
@@ -555,16 +557,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#222',
   },
   categoryText: {
-    fontSize: 14,
-    color: '#666',
-    fontWeight: '500',
+    fontSize: TYPOGRAPHY.bodySmall,
+    color: COLORS.gray,
+    fontWeight: FONT_WEIGHTS.medium,
   },
   categoryTextActive: {
-    color: 'white',
+    color: COLORS.white,
   },
   recipeCount: {
-    fontSize: 14,
-    color: '#666',
+    fontSize: TYPOGRAPHY.bodySmall,
+    color: COLORS.gray,
     marginHorizontal: 20,
     marginBottom: 16,
   },
@@ -586,9 +588,9 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   recipeTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#222',
+    fontSize: TYPOGRAPHY.subheading,
+    fontWeight: FONT_WEIGHTS.bold,
+    color: COLORS.primary,
     marginBottom: 8,
   },
   recipeInfo: {
@@ -601,8 +603,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   recipeInfoText: {
-    fontSize: 14,
-    color: '#666',
+    fontSize: TYPOGRAPHY.bodySmall,
+    color: COLORS.gray,
     marginLeft: 4,
   },
   // Ingredients Screen Styles
@@ -617,10 +619,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   backButtonText: {
-    color: 'white',
-    fontSize: 16,
+    color: COLORS.white,
+    fontSize: TYPOGRAPHY.subtitle,
     marginLeft: 8,
-    fontWeight: '500',
+    fontWeight: FONT_WEIGHTS.medium,
   },
   pageHeader: {
     alignItems: 'center',
@@ -628,14 +630,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   pageTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#222',
+    fontSize: TYPOGRAPHY.title,
+    fontWeight: FONT_WEIGHTS.bold,
+    color: COLORS.primary,
     marginBottom: 5,
   },
   pageSubtitle: {
-    fontSize: 16,
-    color: '#666',
+    fontSize: TYPOGRAPHY.body,
+    color: COLORS.gray,
     textAlign: 'center',
   },
   ingredientsContainer: {
@@ -672,9 +674,9 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   ingredientName: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#222',
+    fontSize: TYPOGRAPHY.subheading,
+    fontWeight: FONT_WEIGHTS.bold,
+    color: COLORS.primary,
   },
   intensityBadge: {
     paddingHorizontal: 8,
@@ -689,18 +691,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF8DC',
   },
   intensityText: {
-    fontSize: 12,
-    color: '#666',
-    fontWeight: '500',
+    fontSize: TYPOGRAPHY.label,
+    color: COLORS.gray,
+    fontWeight: FONT_WEIGHTS.medium,
   },
   ingredientDescription: {
-    fontSize: 14,
-    color: '#666',
+    fontSize: TYPOGRAPHY.bodySmall,
+    color: COLORS.gray,
     marginBottom: 4,
   },
   ingredientCategory: {
-    fontSize: 12,
-    color: '#999',
+    fontSize: TYPOGRAPHY.label,
+    color: COLORS.gray,
   },
   addButton: {
     flexDirection: 'row',
@@ -711,10 +713,10 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   addButtonText: {
-    color: 'white',
-    fontSize: 12,
+    color: COLORS.white,
+    fontSize: TYPOGRAPHY.label,
     marginLeft: 4,
-    fontWeight: '500',
+    fontWeight: FONT_WEIGHTS.medium,
   },
   // Recipe Detail Styles
   recipeDetailHeader: {
@@ -739,9 +741,9 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   recipeDetailTitle: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#222',
+    fontSize: TYPOGRAPHY.large,
+    fontWeight: FONT_WEIGHTS.bold,
+    color: COLORS.primary,
     marginBottom: 16,
   },
   recipeDetailInfo: {
@@ -755,8 +757,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   recipeDetailInfoText: {
-    fontSize: 16,
-    color: '#666',
+    fontSize: TYPOGRAPHY.body,
+    color: COLORS.gray,
     marginLeft: 6,
   },
   categoryBadge: {
@@ -770,8 +772,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   categoryBadgeText: {
-    fontSize: 14,
-    color: '#666',
+    fontSize: TYPOGRAPHY.bodySmall,
+    color: COLORS.gray,
     marginLeft: 6,
     textTransform: 'capitalize',
   },
@@ -782,14 +784,14 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   healthBenefitsTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#222',
+    fontSize: TYPOGRAPHY.subheading,
+    fontWeight: FONT_WEIGHTS.bold,
+    color: COLORS.primary,
     marginBottom: 8,
   },
   healthBenefitsText: {
-    fontSize: 16,
-    color: '#666',
+    fontSize: TYPOGRAPHY.body,
+    color: COLORS.gray,
     lineHeight: 24,
   },
   navigationButtons: {
@@ -807,9 +809,9 @@ const styles = StyleSheet.create({
     borderRadius: 16,
   },
   navButtonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
+    color: COLORS.white,
+    fontSize: TYPOGRAPHY.button,
+    fontWeight: FONT_WEIGHTS.bold,
     marginLeft: 8,
   },
   ingredientsPreview: {
@@ -818,9 +820,9 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   ingredientsPreviewTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#222',
+    fontSize: TYPOGRAPHY.subheading,
+    fontWeight: FONT_WEIGHTS.bold,
+    color: COLORS.primary,
     marginBottom: 12,
   },
   ingredientItem: {
@@ -832,8 +834,8 @@ const styles = StyleSheet.create({
     borderBottomColor: '#f0f0f0',
   },
   ingredientText: {
-    fontSize: 16,
-    color: '#666',
+    fontSize: TYPOGRAPHY.body,
+    color: COLORS.gray,
   },
   addToListButton: {
     width: 24,
@@ -858,8 +860,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   recipeInfoBarText: {
-    fontSize: 14,
-    color: '#666',
+    fontSize: TYPOGRAPHY.bodySmall,
+    color: COLORS.gray,
     marginLeft: 6,
   },
   stepsContainer: {
@@ -884,16 +886,16 @@ const styles = StyleSheet.create({
     marginRight: 12,
   },
   stepNumberText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
+    color: COLORS.white,
+    fontSize: TYPOGRAPHY.body,
+    fontWeight: FONT_WEIGHTS.bold,
   },
   stepContent: {
     flex: 1,
   },
   stepText: {
-    fontSize: 16,
-    color: '#666',
+    fontSize: TYPOGRAPHY.body,
+    color: COLORS.gray,
     lineHeight: 22,
   },
   stepCheckButton: {
@@ -917,9 +919,9 @@ const styles = StyleSheet.create({
     borderRadius: 16,
   },
   bottomNavButtonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
+    color: COLORS.white,
+    fontSize: TYPOGRAPHY.button,
+    fontWeight: FONT_WEIGHTS.bold,
     marginLeft: 8,
   },
 });

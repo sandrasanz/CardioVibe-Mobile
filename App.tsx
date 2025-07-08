@@ -10,6 +10,7 @@ import {
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import { LinearGradient } from 'expo-linear-gradient';
 import { 
   Ionicons,
@@ -33,6 +34,7 @@ import Profile from './components/Profile';
 import Home from './components/Home';
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 // Define theme colors
 const COLORS = {
@@ -47,6 +49,104 @@ const COLORS = {
   gray: '#6b7280',
   darkGray: '#374151',
 };
+
+function HomeStack() {
+  const { user, signOut } = useAuth();
+  const [userStats, setUserStats] = useState<UserStatsType>({
+    id: '',
+    user_id: '',
+    points: 0,
+    streak: 0,
+    level: 1,
+    completed_challenges: 0,
+    recipes_cooked: 0,
+    exercise_minutes: 0,
+    updated_at: ''
+  });
+
+  useEffect(() => {
+    if (user) {
+      loadUserData();
+    }
+  }, [user]);
+
+  const loadUserData = async () => {
+    if (!user) return;
+
+    try {
+      const { data, error } = await supabase
+        .from('user_stats')
+        .select('*')
+        .eq('user_id', user.id)
+        .maybeSingle();
+
+      if (error) throw error;
+      
+      if (data) {
+        setUserStats(data);
+      } else {
+        // No user stats record exists, create one
+        const defaultStats = {
+          user_id: user.id,
+          points: 0,
+          streak: 0,
+          level: 1,
+          completed_challenges: 0,
+          recipes_cooked: 0,
+          exercise_minutes: 0,
+          updated_at: new Date().toISOString()
+        };
+
+        const { data: newStats, error: insertError } = await supabase
+          .from('user_stats')
+          .insert(defaultStats)
+          .select()
+          .single();
+
+        if (insertError) throw insertError;
+        if (newStats) setUserStats(newStats);
+      }
+    } catch (error) {
+      console.error('Error loading user stats:', error);
+    }
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+    } catch (error) {
+      console.error('Error signing out:', error);
+      Alert.alert('Error', 'Failed to sign out');
+    }
+  };
+
+  return (
+    <Stack.Navigator>
+      <Stack.Screen 
+        name="HomeMain" 
+        component={Home} 
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen 
+        name="Profile" 
+        options={{ 
+          title: 'Profile',
+          headerStyle: { backgroundColor: COLORS.white },
+          headerTitleStyle: { fontWeight: 'bold', color: COLORS.primary },
+          headerTintColor: COLORS.primary,
+        }}
+      >
+        {() => (
+          <Profile 
+            user={user} 
+            userStats={userStats} 
+            onSignOut={handleSignOut} 
+          />
+        )}
+      </Stack.Screen>
+    </Stack.Navigator>
+  );
+}
 
 function AppTabs() {
   const { user, signOut } = useAuth();
@@ -299,7 +399,7 @@ function AppTabs() {
         headerTitleAlign: 'center',
       })}
     >
-      <Tab.Screen name="Home" component={Home} options={{ title: 'Home' }} />
+      <Tab.Screen name="Home" component={HomeStack} options={{ title: 'Home', headerShown: false }} />
       <Tab.Screen name="Recipes" options={{ title: 'Recipes' }}>
         {() => (
           <Recipes 

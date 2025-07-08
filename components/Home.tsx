@@ -1,8 +1,18 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView, Modal, Pressable, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView, Modal, Pressable, ScrollView, Alert } from 'react-native';
 import { Ionicons, MaterialIcons, FontAwesome5, Feather } from '@expo/vector-icons';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { TYPOGRAPHY, FONT_WEIGHTS, COLORS } from '../constants/Typography';
+
+type RootStackParamList = {
+  HomeMain: undefined;
+  Profile: undefined;
+};
+
+type HomeNavigationProp = NavigationProp<RootStackParamList>;
 
 export default function Home() {
+  const navigation = useNavigation<HomeNavigationProp>();
   const [breathingVisible, setBreathingVisible] = useState(false);
 
   return (
@@ -11,11 +21,16 @@ export default function Home() {
         {/* Header */}
         <View style={styles.header}>
           <View style={styles.profileContainer}>
-            <TouchableOpacity>
-              <View>
-                <Ionicons name="person-circle" size={40} color="#222" />
-                <View style={styles.notificationBadge} />
-              </View>
+            <TouchableOpacity 
+              style={styles.avatarButton}
+              onPress={() => {
+                console.log('Avatar pressed!');
+                navigation.navigate('Profile');
+              }}
+              activeOpacity={0.7}
+            >
+              <Ionicons name="person-circle" size={40} color="#222" />
+              <View style={styles.notificationBadge} />
             </TouchableOpacity>
           </View>
           <Image source={require('../assets/icon.png')} style={styles.logo} resizeMode="contain" />
@@ -218,6 +233,10 @@ const styles = StyleSheet.create({
   profileContainer: {
     position: 'relative',
   },
+  avatarButton: {
+    padding: 8,
+    borderRadius: 25,
+  },
   notificationBadge: {
     position: 'absolute',
     top: 0,
@@ -256,13 +275,13 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   greeting: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#222',
+    fontSize: TYPOGRAPHY.title,
+    fontWeight: FONT_WEIGHTS.bold,
+    color: COLORS.primary,
   },
   greetingSub: {
-    fontSize: 16,
-    color: '#6B7280',
+    fontSize: TYPOGRAPHY.body,
+    color: COLORS.gray,
     marginTop: 2,
   },
   latestReadingCard: {
@@ -283,9 +302,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   latestReadingTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#222',
+    fontSize: TYPOGRAPHY.heading,
+    fontWeight: FONT_WEIGHTS.bold,
+    color: COLORS.primary,
   },
   statusBadge: {
     backgroundColor: '#FFEDD5',
@@ -295,8 +314,8 @@ const styles = StyleSheet.create({
   },
   statusBadgeText: {
     color: '#FF7A00',
-    fontWeight: 'bold',
-    fontSize: 13,
+    fontWeight: FONT_WEIGHTS.bold,
+    fontSize: TYPOGRAPHY.label,
   },
   readingsRow: {
     flexDirection: 'row',
@@ -309,13 +328,13 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
   },
   readingValue: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#222',
+    fontSize: TYPOGRAPHY.large,
+    fontWeight: FONT_WEIGHTS.bold,
+    color: COLORS.primary,
   },
   readingLabel: {
-    fontSize: 13,
-    color: '#6B7280',
+    fontSize: TYPOGRAPHY.label,
+    color: COLORS.gray,
   },
   slash: {
     fontSize: 28,
